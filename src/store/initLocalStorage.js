@@ -6,7 +6,7 @@ const enabledPlaylistCategories = playlistCategories
   .filter(c => c.enable)
   .map(c => c.name);
 
-let localStorage = {
+const localStorage = {
   player: {},
   settings: {
     lang: null,
@@ -46,7 +46,7 @@ let localStorage = {
   },
 };
 
-if (process.env.IS_ELECTRON === true) {
+if (process.env.IS_ELECTRON == true) {
   localStorage.settings.automaticallyCacheSongs = true;
 }
 

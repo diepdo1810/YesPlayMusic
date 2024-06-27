@@ -37,6 +37,7 @@
             <option value="tr">🇹🇷 Türkçe</option>
             <option value="zh-CN">🇨🇳 简体中文</option>
             <option value="zh-TW">繁體中文</option>
+            <option value="vi">🇻🇳 Tiếng Việt</option>
           </select>
         </div>
       </div>
@@ -726,7 +727,7 @@
         </div>
       </div>
 
-      <div class="footer">
+      <div class="footer" style="display: none">
         <p class="author"
           >MADE BY
           <a href="http://github.com/qier222" target="_blank">QIER222</a></p

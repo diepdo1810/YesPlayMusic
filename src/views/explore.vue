@@ -94,7 +94,7 @@ export default {
     return {
       show: false,
       playlists: [],
-      activeCategory: '全部',
+      activeCategory: '流行',
       loadingMore: false,
       showLoadMoreButton: false,
       hasMore: true,
