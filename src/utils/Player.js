@@ -232,7 +232,6 @@ export default class {
     ) {
       personalFM().then(result => {
         this._personalFMTrack = result.data[0];
-        this._personalFMNextTrack = result.data[1];
         return this._personalFMTrack;
       });
     }
@@ -497,6 +496,10 @@ export default class {
       this._scrobble(this.currentTrack, this._howler?.seek());
     }
     return getTrackDetail(id).then(data => {
+      if (!data.songs || data.songs.length === 0) {
+        store.dispatch('showToast', `Unable to get song information ${id}`);
+        return;
+      }
       const track = data.songs[0];
       this._currentTrack = track;
       this._updateMediaSessionMetaData(track);

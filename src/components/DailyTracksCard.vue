@@ -4,14 +4,12 @@
     <div class="container">
       <div class="title-box">
         <div class="title">
-          <span>每</span>
-          <span>日</span>
-          <span>推</span>
-          <span>荐</span>
+          <span>Every</span>
+          <span>Day</span>
         </div>
       </div>
     </div>
-    <button class="play-button" @click.stop="playDailyTracks">
+    <button class="play-button" @click.stop="playDailyTracksVn">
       <svg-icon icon-class="play" />
     </button>
   </div>
@@ -23,6 +21,7 @@ import { mapMutations, mapState, mapActions } from 'vuex';
 import { dailyRecommendTracks } from '@/api/playlist';
 import { isAccountLoggedIn } from '@/utils/auth';
 import sample from 'lodash/sample';
+import { search } from '@/api/others';
 
 const defaultCovers = [
   'https://p2.music.126.net/0-Ybpa8FrDfRgKYCTJD8Xg==/109951164796696795.jpg',
@@ -33,7 +32,11 @@ const defaultCovers = [
 export default {
   name: 'DailyTracksCard',
   data() {
-    return { useAnimation: false };
+    return {
+      useAnimation: false,
+      tracksVn: [],
+      keywords: ['hkt', 'son tung'],
+    };
   },
   computed: {
     ...mapState(['dailyTracks']),
@@ -42,6 +45,9 @@ export default {
         this.dailyTracks[0]?.al.picUrl || sample(defaultCovers)
       }?param=1024y1024`;
     },
+  },
+  mounted() {
+    this.loadDailyTracksVn();
   },
   created() {
     if (this.dailyTracks.length === 0) this.loadDailyTracks();
@@ -57,6 +63,16 @@ export default {
         })
         .catch(() => {});
     },
+    async loadDailyTracksVn() {
+      // random string in array keywords
+      const randomString = Math.floor(Math.random() * this.keywords.length);
+      const res = await search({
+        keywords: this.keywords[randomString],
+        type: 1,
+        limit: 10,
+      });
+      this.tracksVn = res.result.songs;
+    },
     goToDailyTracks() {
       this.$router.push({ name: 'dailySongs' });
     },
@@ -71,6 +87,15 @@ export default {
         '/daily/songs',
         'url',
         this.dailyTracks[0].id
+      );
+    },
+    playDailyTracksVn() {
+      const trackIDsVn = this.tracksVn.map(t => t.id);
+      this.$store.state.player.replacePlaylist(
+        trackIDsVn,
+        '/daily/songs',
+        'url',
+        trackIDsVn[0].id
       );
     },
   },
