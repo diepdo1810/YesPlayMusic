@@ -23,6 +23,8 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
     "@unblockneteasemusic/rust-napi": "^0.4.0",
     "NeteaseCloudMusicApi": "^4.8.7",
     "axios": "^0.26.1",
@@ -76,6 +78,7 @@
     "x11": "^2.3.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
     "@types/node": "^17.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",

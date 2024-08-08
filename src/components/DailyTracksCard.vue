@@ -10,7 +10,7 @@
       </div>
     </div>
     <button class="play-button" @click.stop="playDailyTracksVn">
-      <svg-icon icon-class="play" />
+      <icon class="fa fa-play"></icon>
     </button>
   </div>
 </template>

@@ -1,0 +1,10 @@
+{
+    "apps": [
+      {
+        "appId": "02db85fd",
+        "dependencyInstallCommand": "pnpm install",
+        "webBuildCommand": "pnpm build"
+      }
+    ]
+  }
+  
